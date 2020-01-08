@@ -4,19 +4,29 @@ using System.Collections;
 
 public class TolowKiller : MonoBehaviour
 {
+    public CreateBall motherfucker;
+
+    bool retard = true;
 
     // Use this for initialization
     void Start()
     {
-
+        retard = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position.y < -2)//一旦掉出Plane
+        if (System.Math.Abs(gameObject.GetComponent<Rigidbody>().velocity.x) > (-gameObject.GetComponent<Rigidbody>().velocity.z) && retard)
         {
-            GameObject.Destroy(gameObject);//摧毁物件
+            motherfucker.score++;
+            motherfucker.combo++;
+            retard = false;
+        }
+        if (gameObject.GetComponent<Rigidbody>().position.z < -1.0f && retard)
+        {
+            motherfucker.combo = 0;
+            retard = false;
         }
     }
 
